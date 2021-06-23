@@ -21,6 +21,9 @@ class PostsController extends AppController {
 
     public function add() {
         if ($this->request->is('post')) {
+            //Added this line
+            $this->request->data['Post']['user_id'] = $this->Auth->user('id');
+
             $this->Post->create();
             if ($this->Post->save($this->request->data)) {
                 $this->Flash->success(__('Your post has been saved.'));
@@ -55,21 +58,38 @@ class PostsController extends AppController {
     }
 
     public function delete($id) {
-    if ($this->request->is('get')) {
-        throw new MethodNotAllowedException();
+        if ($this->request->is('get')) {
+            throw new MethodNotAllowedException();
+        }
+
+        if ($this->Post->delete($id)) {
+            $this->Flash->success(
+                __('The post with id: %s has been deleted.', h($id))
+            );
+        } else {
+            $this->Flash->error(
+                __('The post with id: %s could not be deleted.', h($id))
+            );
+        }
+
+        return $this->redirect(array('action' => 'index'));
     }
 
-    if ($this->Post->delete($id)) {
-        $this->Flash->success(
-            __('The post with id: %s has been deleted.', h($id))
-        );
-    } else {
-        $this->Flash->error(
-            __('The post with id: %s could not be deleted.', h($id))
-        );
-    }
+    public function isAuthorized($user) {
+        // All registered users can add posts
+        if ($this->action === 'add') {
+            return true;
+        }
 
-    return $this->redirect(array('action' => 'index'));
-}
+        // The owner of a post can edit and delete it
+        if (in_array($this->action, array('edit', 'delete'))) {
+            $postId = (int) $this->request->params['pass'][0];
+            if ($this->Post->isOwnedBy($postId, $user['id'])) {
+                return true;
+            }
+        }
+
+        return parent::isAuthorized($user);
+    }
 
 }
