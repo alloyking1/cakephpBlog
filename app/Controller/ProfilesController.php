@@ -8,7 +8,6 @@ class ProfilesController extends AppController {
 
         $data = array(
             'profiles' => $this->Auth->user('username'),
-            // 'posts' => $this->Post->find('count'),
             'posts' => $this->Post->find('count', array(
                 'conditions' => array('Post.user_id' => $this->Auth->user('id') )
             ))

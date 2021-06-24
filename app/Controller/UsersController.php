@@ -28,7 +28,15 @@ class UsersController extends AppController {
 
     public function index() {
         $this->User->recursive = 0;
-        $this->set('users', $this->paginate());
+
+        $userStatus = array (
+            'role' => $this->Auth->user('role'),
+            'username' => $this->Auth->user('username'),
+            'users' => $this->paginate(),
+            'allusers' => $this->User->find('all')
+        );
+
+        $this->set($userStatus);
     }
 
     public function view($id = null) {
