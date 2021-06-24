@@ -3,8 +3,9 @@
 // app/Controller/UsersController.php
 App::uses('AppController', 'Controller');
 
-class UsersController extends AppController {
 
+class UsersController extends AppController {
+    
     //unauthenticated users allowed to access content
     public function beforeFilter() {
         parent::beforeFilter();
@@ -27,13 +28,18 @@ class UsersController extends AppController {
     //
 
     public function index() {
-        $this->User->recursive = 0;
+        // $this->User->recursive = 0;
+        $this->loadModel('Post');
 
         $userStatus = array (
             'role' => $this->Auth->user('role'),
             'username' => $this->Auth->user('username'),
             'users' => $this->paginate(),
-            'allusers' => $this->User->find('all')
+            'allusers' => $this->User->find('all'),
+            'userPosts' => $this->Post->find('all', array(
+                'conditions' => array('Post.user_id' => $this->Auth->user('id') )
+            ))
+          
         );
 
         $this->set($userStatus);

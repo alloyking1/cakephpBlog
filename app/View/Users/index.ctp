@@ -21,16 +21,9 @@
             );
         ?>
     </li>
-    <li>
-        <?php
-            echo $this->Html->link(
-                "Edit or delete Users",
-                array('controller' => 'Posts', 'action' => 'add')
-            );
-        ?>
-    </li>
 </ul>
-<p>All users table</p>
+<br>
+<h2>All users table</h2>
 
 <table>
     <tr>
@@ -84,6 +77,50 @@
             ?>
         </li>
     </ul>
+
+
+    <h2>Your post</h2>
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Action</th>
+            <th>Created</th>
+        </tr>
+        
+        <?php foreach($userPosts as $post): ?>
+            <tr>
+                <td><?php echo $post['Post']['id']; ?></td>
+                <td>
+                    <?php
+                        echo $this->Html->link(
+                            $post['Post']['title'],
+                            array('controller' => 'posts', 'action' => 'view', $post['Post']['id'])
+                        );
+                    ?>
+                </td>
+                <td>
+                    <?php
+                        echo $this->Form->postLink(
+                            'Delete',
+                            array('controller' => 'posts', 'action' => 'delete', $post['Post']['id']),
+                            array('confirm' => 'Are you sure?')
+                        );
+                    ?>
+                    <?php
+                        echo $this->Html->link(
+                            'Edit',
+                            array('controller' => 'posts', 'action' => 'edit', $post['Post']['id'])
+                        );
+                    ?>
+                </td>
+                <td>
+                    <?php echo $post['Post']['created']; ?>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+        
+    </table>
 <?php endif ?>
 
 <!-- reader features -->
