@@ -68,14 +68,6 @@
                 );
             ?>
         </li>
-        <li>
-            <?php
-                echo $this->Html->link(
-                    "Edit or delete your posts",
-                    array('controller' => 'Posts', 'action' => 'add')
-                );
-            ?>
-        </li>
     </ul>
 
 

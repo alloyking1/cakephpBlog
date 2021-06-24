@@ -1,11 +1,26 @@
 
 <h1>Blog posts</h1>
-<p><?php echo $this->Html->link("Add Post", array('action' => 'add')); ?></p>
+<p>
+    <?php 
+        if ($user === "admin" || $user === "author") :
+                echo $this->Html->link("Add Post", array('action' => 'add')); 
+            else:
+                echo"<th>Only admin and authors can add post</th>";
+            endif
+        
+    ?>
+</p>
 <table>
     <tr>
         <th>Id</th>
         <th>Title</th>
-        <th>Action</th>
+        <?php
+            if ($user === "admin") :
+                echo "<th>Action</th>";
+            else:
+                echo"<th>Only admin can edit</th>";
+            endif
+        ?>
         <th>Created</th>
     </tr>
 
@@ -24,17 +39,18 @@
         </td>
         <td>
             <?php
-                echo $this->Form->postLink(
-                    'Delete',
-                    array('action' => 'delete', $post['Post']['id']),
-                    array('confirm' => 'Are you sure?')
-                );
-            ?>
-            <?php
-                echo $this->Html->link(
+                if ($user === "admin"):
+                    echo $this->Form->postLink(
+                        'Delete',
+                        array('action' => 'delete', $post['Post']['id']),
+                        array('confirm' => 'Are you sure?')
+                    );
+
+                    echo $this->Html->link(
                     'Edit',
                     array('action' => 'edit', $post['Post']['id'])
                 );
+                endif
             ?>
         </td>
         <td>

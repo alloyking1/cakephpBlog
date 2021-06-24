@@ -4,7 +4,11 @@ class PostsController extends AppController {
     public $helpers = array('Html', 'Form');
 
     public function index(){
-        $this->set('posts', $this->Post->find('all'));
+        $data = array(
+            'user' => $this->Auth->user('role'),
+            'posts'=> $this->Post->find('all')
+        );
+        $this->set($data);
     }
 
     public function view($id = null) {
