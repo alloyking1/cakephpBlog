@@ -50,6 +50,9 @@
                 <?php 
                     echo $this->Form->postLink('Delete', array('action' => 'delete', $user['User']['id']),array('confirm' => 'Are you sure?'));
                 ?>
+                <?php 
+                    echo $this->Html->link('Edit', array('action' => 'edit', $user['User']['id']));
+                ?>
             </td>
             <td>
                 <?php echo $user['User']['created']; ?>
