@@ -108,15 +108,11 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 		</div>
 
 		<div id="footer">
-			<?php echo $this->Html->link(
-					$this->Html->image('cake.power.gif', array('alt' => $cakeDescription, 'border' => '0')),
-					'https://cakephp.org/',
-					array('target' => '_blank', 'escape' => false, 'id' => 'cake-powered')
-				);
-			?>
-			<p>
-				<?php echo $cakeVersion; ?>
-			</p>
+		<br><br>
+			<div class="text-center">
+				<hr>
+				<h5>Sample footer, by Me.</h5>
+			</div>
 		</div>
 	</div>
 	<?php //echo $this->element('sql_dump'); ?>
