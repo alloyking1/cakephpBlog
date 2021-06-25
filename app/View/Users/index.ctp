@@ -3,6 +3,7 @@
 
 <!-- admin features -->
 <?php if ( $role === "admin"):  ?>
+
 <h2>You can do the following</h2>
 <ul>
     <li>
