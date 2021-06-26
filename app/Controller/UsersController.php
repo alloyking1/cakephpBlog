@@ -38,6 +38,9 @@ class UsersController extends AppController {
             'allusers' => $this->User->find('all'),
             'userPosts' => $this->Post->find('all', array(
                 'conditions' => array('Post.user_id' => $this->Auth->user('id') )
+            )),
+            'postsCount' => $this->Post->find('count', array(
+                'conditions' => array('Post.user_id' => $this->Auth->user('id') )
             ))
           
         );

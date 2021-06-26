@@ -2,6 +2,7 @@
 <div class="container">
     <div class="jumbotron">
         <h1>Hello <b><?php echo $username ?></b> your role is: <b><?php echo $role ?></b></h1>
+        <p>You have a total number of <b><?php echo $postsCount ?></b> post</p>
 
         <?php if ($role === "admin"): ?>
             <h2>You can do the following</h2>
