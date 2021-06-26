@@ -21,7 +21,13 @@
                             <?php echo $this->Form->input(('password'),['class' => 'form-control'] ); ?>
                         </div>
                         <div class="form-group">
-                            <?php echo $this->Form->input('role', array('options' => array('admin' => 'Admin', 'author' => 'Author', 'reader' => 'Reader')),['class' => 'form-control']); ?>
+                            <?php
+                                if (AuthComponent::user('id')): 
+                                    echo $this->Form->input('role', array('options' => array('admin' => 'Admin', 'author' => 'Author', 'reader' => 'Reader')),['class' => 'form-control']);
+                                else:
+                                    echo $this->Form->input('role', array('options' => array('author' => 'Author', 'reader' => 'Reader')),['class' => 'form-control']);
+                                endif
+                            ?>
                         </div>
                         
                     

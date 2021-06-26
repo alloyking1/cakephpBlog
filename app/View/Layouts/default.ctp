@@ -82,11 +82,13 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 							<li><?php echo $this->Html->link('Profile', array('controller' => 'profiles', 'action' => 'index')); ?></li>
 
 							<?php else: ?>
-
-							<li><?php echo $this->Html->link('login', array('controller' => 'users', 'action' => 'login'), ['class'=>'navbar-brand']); ?></li>
-							<?php endif ?>
 						</ul>
 						</li>
+					</ul>
+					<ul class="nav navbar-nav">
+						<li><?php echo $this->Html->link('login', array('controller' => 'users', 'action' => 'login')); ?></li>
+							<li><?php echo $this->Html->link('signup', array('controller' => 'users', 'action' => 'add')); ?></li>
+							<?php endif ?>
 					</ul>
 					</div><!-- /.navbar-collapse -->
 				
