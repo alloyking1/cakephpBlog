@@ -138,7 +138,7 @@
     <?php endif ?>
 
     <!-- reader features -->
-    <!-- <?php //if ($role === "reader"): ?>
+    <?php if ($role === "reader"): ?>
         <h2>You can do the following</h2>
         <ul>
             <li>
@@ -150,5 +150,5 @@
                 ?>
             </li>
         </ul>
-    <?php //endif ?> -->
+    <?php endif ?>
 </div>
