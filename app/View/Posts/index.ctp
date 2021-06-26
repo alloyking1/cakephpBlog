@@ -28,6 +28,7 @@
                     echo"<th>Only admin can edit</th>";
                 endif
             ?>
+            <th>Author</th>
             <th>Created</th>
         </tr>
 
@@ -61,6 +62,9 @@
                         );
                     endif
                 ?>
+            </td>
+            <td>
+                <?php echo $post['User']['username']; ?>
             </td>
             <td>
                 <?php echo $post['Post']['created']; ?>
