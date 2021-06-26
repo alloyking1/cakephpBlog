@@ -7,6 +7,7 @@
     <hr/>
 
     <p><small>Created: <?php echo $post['Post']['created']; ?></small></p>
+    <p><small>Author: <?php echo $post['User']['username']; ?></small></p>
 
     <p><?php echo h($post['Post']['body']); ?></p>
 </div>

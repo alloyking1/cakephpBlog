@@ -137,18 +137,4 @@
         </table>
     <?php endif ?>
 
-    <!-- reader features -->
-    <?php if ($role === "reader"): ?>
-        <h2>You can do the following</h2>
-        <ul>
-            <li>
-                <?php
-                    echo $this->Html->link(
-                        "only read post",
-                        array('controller' => 'Posts', 'action' => 'index')
-                    );
-                ?>
-            </li>
-        </ul>
-    <?php endif ?>
 </div>
